@@ -1,7 +1,7 @@
 const { Client, RichEmbed } = require("discord.js");
 const client = new Client({ disableEveryone: true})
 const ytdl = require("ytdl-core");
-const devs = ["340653929429729281" , "171259176029257728" , "349124522747887616" , "447804943454175232"]
+const devs = ["171259176029257728", "343383616895713290"]
 const request = require("request");
 const convert = require("hh-mm-ss")
 const fs = require("fs");
@@ -21,7 +21,7 @@ client.on('message', async function(message) {
     if(message.author.bot) return;
     if(!message.channel.guild) return;
     //////////////////////////////////
-    if(message.content === `<@${client.user.id}>`) return message.channel.send(`Hey I'am **${client.user.username}**, A nice music bot developed by: \`\`Abady#1196\`\``);
+    if(message.content === `<@${client.user.id}>`) return message.channel.send(`Hey I'am **${client.user.username}**, A nice music bot developed by: <@${client.users.get(devs[0]).id}> supported by <@${client.users.get(devs[1]).id}> `);
     // const noms = "** ❯ :musical_note: No music is playing, try ``m-play``" 
     const novc = "**<:MxNo:449703922190385153> | You are not in a voice channel.**"
     // const nomatch = "**<:MxNo:449703922190385153> You've to be in the same voice channel!**"
@@ -111,7 +111,7 @@ client.on('message', async function(message) {
         guilds[message.guild.id].skipReq = 0;
         guilds[message.guild.id].skipReq = [];
         guilds[message.guild.id].loop = false;
-        guilds[message.guild.id].volume = 1 ;
+        guilds[message.guild.id].volume = 1;
     }
 
 
@@ -447,7 +447,6 @@ function skip_song(message) {
     guilds[message.guild.id].dispatcher.end();
 }
 
-//ERROR: Playing 1 item over and over.
 async function playMusic(id, message) {
     guilds[message.guild.id].voiceChannel = message.member.voiceChannel;
     guilds[message.guild.id].voiceChannel.join().then(function(connection) {
